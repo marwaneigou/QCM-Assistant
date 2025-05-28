@@ -1,0 +1,28 @@
+{
+    "name": "qcm-clipboard-assistant",
+    "version": "1.0.0",
+    "description": "AI-powered QCM assistant that analyzes multiple choice questions from clipboard",
+    "main": "qcm-assistant.js",
+    "type": "module",
+    "scripts": {
+      "start": "electron .",
+      "dev": "electron . --dev"
+    },
+    "keywords": [
+      "qcm",
+      "ai",
+      "clipboard",
+      "electron"
+    ],
+    "author": "Your Name",
+    "license": "MIT",
+    "dependencies": {
+      "clipboardy": "^4.0.0",
+      "dotenv": "^16.4.5",
+      "electron": "^28.2.0",
+      "node-fetch": "^3.3.2"
+    },
+    "devDependencies": {
+      "electron-builder": "^24.9.1"
+    }
+  }
