@@ -16,7 +16,7 @@ const __dirname = path.dirname(__filename);
 config();
 
 // Groq API configuration
-const token = process.env.GROQ_API_KEY || 'gsk_ijBXpNCHSp7AEbfnAuTx';
+const token = process.env.GROQ_API_KEY || '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';
 const endpoint = "https://api.groq.com/openai/v1/chat/completions";
 const model = "llama3-70b-8192"; 
 
@@ -58,7 +58,7 @@ class QCMAssistant {
         this.createTray();
         this.registerGlobalShortcut();
         console.log('✅ QCM Assistant is ready!');
-        console.log('📋 Select QCM text and press Ctrl+Shift+C to analyze');
+        console.log('📋 Select QCM text and press Ctrl+Q to analyze');
       }).catch(err => {
         console.error('❌ Error in app.whenReady:', err);
       });
@@ -119,7 +119,7 @@ class QCMAssistant {
 
   registerGlobalShortcut() {
     // Use Ctrl+Shift+C for QCM analysis
-    const registered = globalShortcut.register('CommandOrControl+Shift+C', async () => {
+    const registered = globalShortcut.register('CommandOrControl+Q', async () => {
         if (this.isProcessing) {
           console.log('⏳ Already processing a request...');
           return;
@@ -194,8 +194,8 @@ class QCMAssistant {
     if (!registered) {
       console.error('❌ Failed to register global shortcut');
     } else {
-      console.log('✅ Global shortcut registered: Ctrl+Shift+C');
-      console.log('💡 Select text first, then press Ctrl+Shift+C to analyze');
+      console.log('✅ Global shortcut registered: Ctrl+Q');
+      console.log('💡 Select text first, then press Ctrl+Q to analyze');
     }
     
     // Keep the clipboard monitoring for auto-detection
@@ -225,8 +225,8 @@ class QCMAssistant {
           // If the same question-like content persists for 2 checks (1 second)
           // and user hasn't used it yet, suggest analysis
           if (clipboardCheckCount >= 2) {
-            console.log('📋 Detected potential QCM in clipboard. Use Ctrl+Shift+C to analyze!');
-            this.updateTrayStatus('QCM detected - Ctrl+Shift+C');
+            console.log('📋 Detected potential QCM in clipboard. Use Ctrl+Q to analyze!');
+            this.updateTrayStatus('QCM detected - Ctrl+Q');
             clipboardCheckCount = 0;
           }
         } else if (currentClipboard !== lastClipboard) {
@@ -318,7 +318,8 @@ Your task is to:
 3. Provide the correct answer with a brief explanation
 4. Format your response as: "Answer: [Letter] - [Brief explanation]"
 
-Be concise but accurate. If the question is unclear or incomplete, say so.`;
+Be concise but accurate. If the question is unclear or incomplete, say so.
+and if i gived you a writing give me a text with target number of word that i gived you`;
 
     const requestPayload = {
       model: model,
@@ -391,7 +392,7 @@ Be concise but accurate. If the question is unclear or incomplete, say so.`;
           enabled: false
         },
         {
-          label: 'Select text + Ctrl+Shift+C to analyze',
+          label: 'Select text + Ctrl+Q to analyze',
           enabled: false
         },
         {
